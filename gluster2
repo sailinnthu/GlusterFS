@@ -1,0 +1,398 @@
+ubuntu@ip-172-31-3-59:~$ sudo hostname gluster2
+ubuntu@ip-172-31-3-59:~$ clear
+
+ubuntu@ip-172-31-3-59:~$ sudo nano /etc/hosts
+sudo: unable to resolve host gluster2
+ubuntu@ip-172-31-3-59:~$ ping gluster1
+PING gluster1 (172.31.36.116) 56(84) bytes of data.
+64 bytes from gluster1 (172.31.36.116): icmp_seq=1 ttl=64 time=1.40 ms
+^C
+--- gluster1 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.409/1.409/1.409/0.000 ms
+ubuntu@ip-172-31-3-59:~$ ping gluster1.vcloudynet.io
+PING gluster1 (172.31.36.116) 56(84) bytes of data.
+64 bytes from gluster1 (172.31.36.116): icmp_seq=1 ttl=64 time=1.38 ms
+^C
+--- gluster1 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.387/1.387/1.387/0.000 ms
+ubuntu@ip-172-31-3-59:~$ ping gluster2
+PING gluster2 (172.31.3.59) 56(84) bytes of data.
+64 bytes from gluster2 (172.31.3.59): icmp_seq=1 ttl=64 time=0.014 ms
+^C
+--- gluster2 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.014/0.014/0.014/0.000 ms
+ubuntu@ip-172-31-3-59:~$ ping gclient
+PING gclient (172.31.19.28) 56(84) bytes of data.
+64 bytes from gclient (172.31.19.28): icmp_seq=1 ttl=64 time=1.25 ms
+^C
+--- gclient ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.251/1.251/1.251/0.000 ms
+ubuntu@ip-172-31-3-59:~$ sudo su
+root@gluster2:/home/ubuntu# sudo apt-get install -y software-properties-common
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+software-properties-common is already the newest version (0.96.20.5).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+root@gluster2:/home/ubuntu#  sudo add-apt-repository ppa:gluster/glusterfs-3.8
+
+ 
+ More info: https://launchpad.net/~gluster/+archive/ubuntu/glusterfs-3.8
+Press [ENTER] to continue or ctrl-c to cancel adding it
+
+gpg: keyring `/tmp/tmp7ee2cxhk/secring.gpg' created
+gpg: keyring `/tmp/tmp7ee2cxhk/pubring.gpg' created
+gpg: requesting key 3FE869A9 from hkp server keyserver.ubuntu.com
+gpg: /tmp/tmp7ee2cxhk/trustdb.gpg: trustdb created
+gpg: key 3FE869A9: public key "Launchpad PPA for Gluster" imported
+gpg: Total number processed: 1
+gpg:               imported: 1  (RSA: 1)
+OK
+root@gluster2:/home/ubuntu# 
+root@gluster2:/home/ubuntu# sudo apt-get update
+Hit:1 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial InRelease
+Get:2 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates InRelease [102 kB]           
+Get:3 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-backports InRelease [102 kB]                                                            
+Get:4 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/main Sources [868 kB]                                                                   
+Get:5 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/restricted Sources [4808 B]                                                             
+Get:6 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/universe Sources [7728 kB]                                                              
+Get:7 http://security.ubuntu.com/ubuntu xenial-security InRelease [102 kB]                                                                               
+Get:8 http://ppa.launchpad.net/gluster/glusterfs-3.8/ubuntu xenial InRelease [24.3 kB]   
+Get:9 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/multiverse Sources [179 kB]          
+Get:10 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/main Sources [233 kB]                          
+Get:11 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/restricted Sources [2688 B]                      
+Get:12 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/universe Sources [134 kB]              
+Get:13 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/multiverse Sources [4556 B]                     
+Get:14 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [483 kB]           
+Get:15 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/main Translation-en [192 kB]                     
+Get:16 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages [411 kB]                        
+Get:17 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/universe Translation-en [155 kB]                  
+Get:18 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-backports/main Sources [3200 B]                
+Get:19 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-backports/universe Sources [1868 B]            
+Get:20 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-backports/main amd64 Packages [4672 B]         
+Get:21 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-backports/main Translation-en [3200 B]         
+Get:22 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-backports/universe amd64 Packages [2512 B]     
+Get:23 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-backports/universe Translation-en [1216 B]     
+Get:24 http://ppa.launchpad.net/gluster/glusterfs-3.8/ubuntu xenial/main amd64 Packages [1308 B]                 
+Get:25 http://security.ubuntu.com/ubuntu xenial-security/main Sources [61.1 kB]
+Get:26 http://ppa.launchpad.net/gluster/glusterfs-3.8/ubuntu xenial/main Translation-en [896 B]
+Get:27 http://security.ubuntu.com/ubuntu xenial-security/restricted Sources [2288 B]
+Get:28 http://security.ubuntu.com/ubuntu xenial-security/universe Sources [20.9 kB]
+Get:29 http://security.ubuntu.com/ubuntu xenial-security/multiverse Sources [1148 B]
+Get:30 http://security.ubuntu.com/ubuntu xenial-security/main amd64 Packages [219 kB]
+Get:31 http://security.ubuntu.com/ubuntu xenial-security/main Translation-en [92.0 kB]
+Get:32 http://security.ubuntu.com/ubuntu xenial-security/universe amd64 Packages [79.1 kB]
+Get:33 http://security.ubuntu.com/ubuntu xenial-security/universe Translation-en [43.9 kB]
+Fetched 11.3 MB in 3s (3087 kB/s) 
+Reading package lists... Done
+root@gluster2:/home/ubuntu# sudo apt-get install -y glusterfs-server
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  attr glusterfs-client glusterfs-common keyutils libaio1 libibverbs1 libnfsidmap2 libpython-stdlib libpython2.7 libpython2.7-minimal
+  libpython2.7-stdlib librdmacm1 libtirpc1 liburcu4 nfs-common python python-minimal python2.7 python2.7-minimal rpcbind
+Suggested packages:
+  watchdog python-doc python-tk python2.7-doc binutils binfmt-support
+The following NEW packages will be installed:
+  attr glusterfs-client glusterfs-common glusterfs-server keyutils libaio1 libibverbs1 libnfsidmap2 libpython-stdlib libpython2.7 libpython2.7-minimal
+  libpython2.7-stdlib librdmacm1 libtirpc1 liburcu4 nfs-common python python-minimal python2.7 python2.7-minimal rpcbind
+0 upgraded, 21 newly installed, 0 to remove and 4 not upgraded.
+Need to get 8711 kB of archives.
+After this operation, 37.4 MB of additional disk space will be used.
+Get:1 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython2.7-minimal amd64 2.7.12-1ubuntu0~16.04.1 [339 kB]
+Get:2 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 python2.7-minimal amd64 2.7.12-1ubuntu0~16.04.1 [1295 kB]
+Get:3 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 python-minimal amd64 2.7.11-1 [28.2 kB]
+Get:4 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython2.7-stdlib amd64 2.7.12-1ubuntu0~16.04.1 [1884 kB]
+Get:5 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 python2.7 amd64 2.7.12-1ubuntu0~16.04.1 [224 kB]
+Get:6 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 libpython-stdlib amd64 2.7.11-1 [7656 B]
+Get:7 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 python amd64 2.7.11-1 [137 kB]
+Get:8 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 libaio1 amd64 0.3.110-2 [6356 B]
+Get:9 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 libibverbs1 amd64 1.1.8-1.1ubuntu2 [25.0 kB]
+Get:10 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython2.7 amd64 2.7.12-1ubuntu0~16.04.1 [1070 kB]
+Get:11 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 librdmacm1 amd64 1.0.21-1 [49.1 kB]
+Get:12 http://ppa.launchpad.net/gluster/glusterfs-3.8/ubuntu xenial/main amd64 glusterfs-common amd64 3.8.9-ubuntu1~xenial1 [2990 kB]
+Get:13 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/universe amd64 liburcu4 amd64 0.9.1-3 [47.3 kB]
+Get:14 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 attr amd64 1:2.4.47-2 [25.5 kB]
+Get:15 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 libnfsidmap2 amd64 0.25-5 [32.2 kB]
+Get:16 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 libtirpc1 amd64 0.2.5-1 [75.6 kB]
+Get:17 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 keyutils amd64 1.5.9-8ubuntu1 [47.1 kB]
+Get:18 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 rpcbind amd64 0.2.3-0.2 [40.3 kB]
+Get:19 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 nfs-common amd64 1:1.2.8-9ubuntu12 [185 kB]
+Get:20 http://ppa.launchpad.net/gluster/glusterfs-3.8/ubuntu xenial/main amd64 glusterfs-client amd64 3.8.9-ubuntu1~xenial1 [19.5 kB]                    
+Get:21 http://ppa.launchpad.net/gluster/glusterfs-3.8/ubuntu xenial/main amd64 glusterfs-server amd64 3.8.9-ubuntu1~xenial1 [183 kB]                     
+Fetched 8711 kB in 15s (550 kB/s)                                                                                                                        
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+locale: Cannot set LC_CTYPE to default locale: No such file or directory
+locale: Cannot set LC_ALL to default locale: No such file or directory
+Selecting previously unselected package libpython2.7-minimal:amd64.
+(Reading database ... 53844 files and directories currently installed.)
+Preparing to unpack .../libpython2.7-minimal_2.7.12-1ubuntu0~16.04.1_amd64.deb ...
+Unpacking libpython2.7-minimal:amd64 (2.7.12-1ubuntu0~16.04.1) ...
+Selecting previously unselected package python2.7-minimal.
+Preparing to unpack .../python2.7-minimal_2.7.12-1ubuntu0~16.04.1_amd64.deb ...
+Unpacking python2.7-minimal (2.7.12-1ubuntu0~16.04.1) ...
+Selecting previously unselected package python-minimal.
+Preparing to unpack .../python-minimal_2.7.11-1_amd64.deb ...
+Unpacking python-minimal (2.7.11-1) ...
+Selecting previously unselected package libpython2.7-stdlib:amd64.
+Preparing to unpack .../libpython2.7-stdlib_2.7.12-1ubuntu0~16.04.1_amd64.deb ...
+Unpacking libpython2.7-stdlib:amd64 (2.7.12-1ubuntu0~16.04.1) ...
+Selecting previously unselected package python2.7.
+Preparing to unpack .../python2.7_2.7.12-1ubuntu0~16.04.1_amd64.deb ...
+Unpacking python2.7 (2.7.12-1ubuntu0~16.04.1) ...
+Selecting previously unselected package libpython-stdlib:amd64.
+Preparing to unpack .../libpython-stdlib_2.7.11-1_amd64.deb ...
+Unpacking libpython-stdlib:amd64 (2.7.11-1) ...
+Processing triggers for man-db (2.7.5-1) ...
+Processing triggers for mime-support (3.59ubuntu1) ...
+Setting up libpython2.7-minimal:amd64 (2.7.12-1ubuntu0~16.04.1) ...
+Setting up python2.7-minimal (2.7.12-1ubuntu0~16.04.1) ...
+Linking and byte-compiling packages for runtime python2.7...
+Setting up python-minimal (2.7.11-1) ...
+Selecting previously unselected package python.
+(Reading database ... 54590 files and directories currently installed.)
+Preparing to unpack .../python_2.7.11-1_amd64.deb ...
+Unpacking python (2.7.11-1) ...
+Selecting previously unselected package libaio1:amd64.
+Preparing to unpack .../libaio1_0.3.110-2_amd64.deb ...
+Unpacking libaio1:amd64 (0.3.110-2) ...
+Selecting previously unselected package libibverbs1.
+Preparing to unpack .../libibverbs1_1.1.8-1.1ubuntu2_amd64.deb ...
+Unpacking libibverbs1 (1.1.8-1.1ubuntu2) ...
+Selecting previously unselected package libpython2.7:amd64.
+Preparing to unpack .../libpython2.7_2.7.12-1ubuntu0~16.04.1_amd64.deb ...
+Unpacking libpython2.7:amd64 (2.7.12-1ubuntu0~16.04.1) ...
+Selecting previously unselected package librdmacm1.
+Preparing to unpack .../librdmacm1_1.0.21-1_amd64.deb ...
+Unpacking librdmacm1 (1.0.21-1) ...
+Selecting previously unselected package liburcu4:amd64.
+Preparing to unpack .../liburcu4_0.9.1-3_amd64.deb ...
+Unpacking liburcu4:amd64 (0.9.1-3) ...
+Selecting previously unselected package attr.
+Preparing to unpack .../attr_1%3a2.4.47-2_amd64.deb ...
+Unpacking attr (1:2.4.47-2) ...
+Selecting previously unselected package glusterfs-common.
+Preparing to unpack .../glusterfs-common_3.8.9-ubuntu1~xenial1_amd64.deb ...
+Unpacking glusterfs-common (3.8.9-ubuntu1~xenial1) ...
+Selecting previously unselected package glusterfs-client.
+Preparing to unpack .../glusterfs-client_3.8.9-ubuntu1~xenial1_amd64.deb ...
+Unpacking glusterfs-client (3.8.9-ubuntu1~xenial1) ...
+Selecting previously unselected package glusterfs-server.
+Preparing to unpack .../glusterfs-server_3.8.9-ubuntu1~xenial1_amd64.deb ...
+Unpacking glusterfs-server (3.8.9-ubuntu1~xenial1) ...
+Selecting previously unselected package libnfsidmap2:amd64.
+Preparing to unpack .../libnfsidmap2_0.25-5_amd64.deb ...
+Unpacking libnfsidmap2:amd64 (0.25-5) ...
+Selecting previously unselected package libtirpc1:amd64.
+Preparing to unpack .../libtirpc1_0.2.5-1_amd64.deb ...
+Unpacking libtirpc1:amd64 (0.2.5-1) ...
+Selecting previously unselected package keyutils.
+Preparing to unpack .../keyutils_1.5.9-8ubuntu1_amd64.deb ...
+Unpacking keyutils (1.5.9-8ubuntu1) ...
+Selecting previously unselected package rpcbind.
+Preparing to unpack .../rpcbind_0.2.3-0.2_amd64.deb ...
+Unpacking rpcbind (0.2.3-0.2) ...
+Selecting previously unselected package nfs-common.
+Preparing to unpack .../nfs-common_1%3a1.2.8-9ubuntu12_amd64.deb ...
+Unpacking nfs-common (1:1.2.8-9ubuntu12) ...
+Processing triggers for man-db (2.7.5-1) ...
+Processing triggers for libc-bin (2.23-0ubuntu5) ...
+Processing triggers for ureadahead (0.100.0-19) ...
+Processing triggers for systemd (229-4ubuntu16) ...
+Setting up libpython2.7-stdlib:amd64 (2.7.12-1ubuntu0~16.04.1) ...
+Setting up python2.7 (2.7.12-1ubuntu0~16.04.1) ...
+Setting up libpython-stdlib:amd64 (2.7.11-1) ...
+Setting up python (2.7.11-1) ...
+Setting up libaio1:amd64 (0.3.110-2) ...
+Setting up libibverbs1 (1.1.8-1.1ubuntu2) ...
+Setting up libpython2.7:amd64 (2.7.12-1ubuntu0~16.04.1) ...
+Setting up librdmacm1 (1.0.21-1) ...
+Setting up liburcu4:amd64 (0.9.1-3) ...
+Setting up attr (1:2.4.47-2) ...
+Setting up glusterfs-common (3.8.9-ubuntu1~xenial1) ...
+Setting up glusterfs-client (3.8.9-ubuntu1~xenial1) ...
+Setting up glusterfs-server (3.8.9-ubuntu1~xenial1) ...
+Setting up libnfsidmap2:amd64 (0.25-5) ...
+Setting up libtirpc1:amd64 (0.2.5-1) ...
+Setting up keyutils (1.5.9-8ubuntu1) ...
+Setting up rpcbind (0.2.3-0.2) ...
+Setting up nfs-common (1:1.2.8-9ubuntu12) ...
+locale: Cannot set LC_CTYPE to default locale: No such file or directory
+locale: Cannot set LC_ALL to default locale: No such file or directory
+
+Creating config file /etc/idmapd.conf with new version
+locale: Cannot set LC_CTYPE to default locale: No such file or directory
+locale: Cannot set LC_ALL to default locale: No such file or directory
+
+Creating config file /etc/default/nfs-common with new version
+Adding system user `statd' (UID 112) ...
+Adding new user `statd' (UID 112) with group `nogroup' ...
+Not creating home directory `/var/lib/nfs'.
+nfs-utils.service is a disabled or a static unit, not starting it.
+Processing triggers for libc-bin (2.23-0ubuntu5) ...
+Processing triggers for ureadahead (0.100.0-19) ...
+Processing triggers for systemd (229-4ubuntu16) ...
+root@gluster2:/home/ubuntu# sudo service glusterfs-server status
+● glusterfs-server.service - LSB: GlusterFS server
+   Loaded: loaded (/etc/init.d/glusterfs-server; bad; vendor preset: enabled)
+   Active: active (running) since Tue 2017-02-28 23:52:00 UTC; 4s ago
+     Docs: man:systemd-sysv-generator(8)
+   CGroup: /system.slice/glusterfs-server.service
+           └─3435 /usr/sbin/glusterd -p /var/run/glusterd.pid
+
+Feb 28 23:51:58 gluster2 systemd[1]: Starting LSB: GlusterFS server...
+Feb 28 23:51:59 gluster2 glusterfs-server[3425]:  * Starting glusterd service glusterd
+Feb 28 23:52:00 gluster2 glusterfs-server[3425]:    ...done.
+Feb 28 23:52:00 gluster2 systemd[1]: Started LSB: GlusterFS server.
+root@gluster2:/home/ubuntu# sudo gluster peer status
+Number of Peers: 1
+
+Hostname: gluster1
+Uuid: 22168e44-6db4-448f-8ca1-4c3e4c43520f
+State: Peer in Cluster (Connected)
+root@gluster2:/home/ubuntu# sudo gluster pool list
+UUID					Hostname 	State
+22168e44-6db4-448f-8ca1-4c3e4c43520f	gluster1 	Connected 
+54253dad-e08d-4fb4-b398-67e8c7c3db01	localhost	Connected 
+root@gluster2:/home/ubuntu# lsblk
+NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+xvda    202:0    0   8G  0 disk 
+`-xvda1 202:1    0   8G  0 part /
+xvdb    202:16   0  10G  0 disk 
+root@gluster2:/home/ubuntu# sudo fdisk /dev/xvdb
+
+Welcome to fdisk (util-linux 2.27.1).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table.
+Created a new DOS disklabel with disk identifier 0x9a2d3596.
+
+Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): p
+Partition number (1-4, default 1): 1
+First sector (2048-20971519, default 2048): 
+Last sector, +sectors or +size{K,M,G,T,P} (2048-20971519, default 20971519): 
+
+Created a new partition 1 of type 'Linux' and of size 10 GiB.
+
+Command (m for help): p
+Disk /dev/xvdb: 10 GiB, 10737418240 bytes, 20971520 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x9a2d3596
+
+Device     Boot Start      End  Sectors Size Id Type
+/dev/xvdb1       2048 20971519 20969472  10G 83 Linux
+
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+
+root@gluster2:/home/ubuntu# lsblk
+NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+xvda    202:0    0   8G  0 disk 
+`-xvda1 202:1    0   8G  0 part /
+xvdb    202:16   0  10G  0 disk 
+`-xvdb1 202:17   0  10G  0 part 
+root@gluster2:/home/ubuntu#  sudo mkfs.xfs /dev/xvdb1
+meta-data=/dev/xvdb1             isize=512    agcount=4, agsize=655296 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=1, sparse=0
+data     =                       bsize=4096   blocks=2621184, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
+log      =internal log           bsize=4096   blocks=2560, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+root@gluster2:/home/ubuntu# lsblk
+NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+xvda    202:0    0   8G  0 disk 
+`-xvda1 202:1    0   8G  0 part /
+xvdb    202:16   0  10G  0 disk 
+`-xvdb1 202:17   0  10G  0 part 
+root@gluster2:/home/ubuntu# echo "/dev/xvdb1 /export/xvdb1 xfs defaults 0 0"  >> /etc/fstab
+root@gluster2:/home/ubuntu# more /etc/fstab 
+LABEL=cloudimg-rootfs	/	 ext4	defaults,discard	0 0
+/dev/xvdb1 /export/xvdb1 xfs defaults 0 0
+root@gluster2:/home/ubuntu# mkdir -p /export/xvdb1 && mount -a && mkdir -p /export/xvdb1/brick
+root@gluster2:/home/ubuntu# lsblk
+NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+xvda    202:0    0   8G  0 disk 
+`-xvda1 202:1    0   8G  0 part /
+xvdb    202:16   0  10G  0 disk 
+`-xvdb1 202:17   0  10G  0 part /export/xvdb1
+root@gluster2:/home/ubuntu# cd /export/xvdb1/brick/
+root@gluster2:/export/xvdb1/brick# ls -la
+total 0
+drwxr-xr-x 2 root root  6 Feb 28 23:56 .
+drwxr-xr-x 3 root root 19 Feb 28 23:56 ..
+root@gluster2:/export/xvdb1/brick# ls -la
+total 0
+drwxr-xr-x 2 root root  6 Feb 28 23:56 .
+drwxr-xr-x 3 root root 19 Feb 28 23:56 ..
+root@gluster2:/export/xvdb1/brick# ls -la
+total 0
+drwxr-xr-x 2 root root  6 Feb 28 23:56 .
+drwxr-xr-x 3 root root 19 Feb 28 23:56 ..
+root@gluster2:/export/xvdb1/brick# ls
+root@gluster2:/export/xvdb1/brick# ls -la
+total 0
+drwxr-xr-x 4 root root  41 Feb 28 23:58 .
+drwxr-xr-x 3 root root  19 Feb 28 23:56 ..
+drw------- 8 root root 154 Feb 28 23:58 .glusterfs
+drwxr-xr-x 3 root root  25 Feb 28 23:58 .trashcan
+root@gluster2:/export/xvdb1/brick# gluster volume info
+ 
+Volume Name: gvolume0
+Type: Replicate
+Volume ID: 2fc23c71-7b91-4f3b-85f7-b7a48a2f4983
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 2 = 2
+Transport-type: tcp
+Bricks:
+Brick1: gluster1.vcloudynet.io:/export/xvdb1/brick
+Brick2: gluster2.vcloudynet.io:/export/xvdb1/brick
+Options Reconfigured:
+transport.address-family: inet
+performance.readdir-ahead: on
+nfs.disable: on
+root@gluster2:/export/xvdb1/brick# df -h /export/
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda1      7.8G  1.1G  6.4G  14% /
+root@gluster2:/export/xvdb1/brick# lsblk
+NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+xvda    202:0    0   8G  0 disk 
+`-xvda1 202:1    0   8G  0 part /
+xvdb    202:16   0  10G  0 disk 
+`-xvdb1 202:17   0  10G  0 part /export/xvdb1
+root@gluster2:/export/xvdb1/brick# df -h /export/xvdb1/
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvdb1       10G   33M   10G   1% /export/xvdb1
+root@gluster2:/export/xvdb1/brick# 
+root@gluster2:/export/xvdb1/brick# ls
+file1  file10  file11  file12  file13  file14  file15  file16  file17  file18  file19  file2  file20  file3  file4  file5  file6  file7  file8  file9
+root@gluster2:/export/xvdb1/brick# 
+root@gluster2:/export/xvdb1/brick# 
+root@gluster2:/export/xvdb1/brick# ls
+file20
+root@gluster2:/export/xvdb1/brick#
